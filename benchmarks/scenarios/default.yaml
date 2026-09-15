@@ -1,0 +1,17 @@
+# Default Benchmark Scenario Configuration
+name: "Default Mixed Inference Workload"
+description: "Evaluates conversational multi-turn, document RAG, and repeated prompt cache reuse"
+seed: 42
+num_requests: 50
+concurrency: 4
+
+workloads:
+  multi_turn:
+    sessions: 4
+    turns_per_session: 4
+  rag:
+    documents: 3
+    questions_per_doc: 4
+  repeated_prompt:
+    requests: 15
+    prefix_length: 512
