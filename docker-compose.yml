@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # Metadata repository for KV cache stats and access metrics
+  redis:
+    image: redis:7.2-alpine
+    container_name: kvguard-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # KVGuard Control Plane API
+  kvguard-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kvguard-api
+    environment:
+      - KVGUARD_ENVIRONMENT=production
+      - KVGUARD_EXECUTION_MODE=simulation
+      - KVGUARD_DRY_RUN=true
+      - REDIS_URL=redis://redis:6379/0
+      - VLLM_BASE_URL=http://host.docker.internal:8000
+      - KVGUARD_API_HOST=0.0.0.0
+      - KVGUARD_API_PORT=8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      redis:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  # Optional Prometheus scraping KVGuard metrics
+  prometheus:
+    image: prom/prometheus:v2.50.0
+    container_name: kvguard-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    depends_on:
+      - kvguard-api
+
+volumes:
+  redis_data:

@@ -1,0 +1,54 @@
+# KVGuard Development Configuration
+environment: development
+execution_mode: simulation
+dry_run: true
+engine: vllm
+
+vllm:
+  base_url: "http://localhost:8000"
+  metrics_path: "/metrics"
+  health_path: "/health"
+  timeout_seconds: 5.0
+
+redis:
+  url: "redis://localhost:6379/0"
+  key_prefix: "kvguard:dev:"
+  use_in_memory_fallback: true
+
+api:
+  host: "0.0.0.0"
+  port: 8080
+  log_level: "DEBUG"
+  cors_origins:
+    - "http://localhost:3000"
+    - "http://127.0.0.1:3000"
+
+telemetry:
+  interval_seconds: 2.0
+  buffer_size: 1000
+
+scoring:
+  recency_weight: 0.4
+  frequency_weight: 0.3
+  reuse_weight: 0.3
+  decay_half_life_seconds: 300.0
+
+policy:
+  gpu_memory_threshold: 0.85
+  gpu_pressure_high: 0.90
+  gpu_pressure_medium: 0.75
+  cpu_memory_threshold: 0.80
+  min_importance_to_keep: 0.60
+  min_importance_to_offload: 0.25
+
+economics:
+  gpu_cost_per_hour: 2.50
+  cpu_cost_per_hour: 0.40
+  storage_cost_per_gb_month: 0.05
+  network_cost_per_gb: 0.01
+
+features:
+  enable_security: false
+  enable_intelligence: true
+  enable_optimization: false
+  enable_research: false

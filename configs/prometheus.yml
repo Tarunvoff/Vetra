@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 2s
+  evaluation_interval: 2s
+
+scrape_configs:
+  - job_name: 'kvguard'
+    static_configs:
+      - targets: ['kvguard-api:8080']
+        labels:
+          app: 'kvguard-control-plane'
+
+  - job_name: 'vllm'
+    static_configs:
+      - targets: ['host.docker.internal:8000']
+        labels:
+          app: 'vllm-engine'

@@ -1,0 +1,36 @@
+# KVGuard Benchmark Configuration
+environment: benchmark
+execution_mode: simulation
+dry_run: true
+engine: vllm
+
+vllm:
+  base_url: "http://localhost:8000"
+  metrics_path: "/metrics"
+  timeout_seconds: 2.0
+
+redis:
+  url: "redis://localhost:6379/1"
+  key_prefix: "kvguard:bench:"
+  use_in_memory_fallback: true
+
+telemetry:
+  interval_seconds: 0.5
+  buffer_size: 5000
+
+scoring:
+  recency_weight: 0.45
+  frequency_weight: 0.30
+  reuse_weight: 0.25
+
+policy:
+  gpu_memory_threshold: 0.80
+  gpu_pressure_high: 0.85
+  gpu_pressure_medium: 0.70
+
+benchmark:
+  seed: 42
+  num_requests: 100
+  concurrency: 8
+  default_workload: "mixed"
+  warmup_requests: 10

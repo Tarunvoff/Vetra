@@ -1,0 +1,50 @@
+# KVGuard Production Configuration Template
+environment: production
+execution_mode: live
+dry_run: true  # Recommended dry_run for initial deployment before write-back support
+engine: vllm
+
+vllm:
+  base_url: "http://vllm-engine.internal:8000"
+  metrics_path: "/metrics"
+  health_path: "/health"
+  timeout_seconds: 3.0
+
+redis:
+  url: "redis://:STRONG_PASSWORD@redis-cluster.internal:6379/0"
+  key_prefix: "kvguard:prod:"
+  use_in_memory_fallback: false
+
+api:
+  host: "0.0.0.0"
+  port: 8080
+  log_level: "INFO"
+  cors_origins:
+    - "https://dashboard.internal.example.com"
+
+telemetry:
+  interval_seconds: 2.0
+  buffer_size: 10000
+
+scoring:
+  recency_weight: 0.4
+  frequency_weight: 0.3
+  reuse_weight: 0.3
+
+policy:
+  gpu_memory_threshold: 0.88
+  gpu_pressure_high: 0.92
+  gpu_pressure_medium: 0.78
+  cpu_memory_threshold: 0.80
+
+economics:
+  gpu_cost_per_hour: 3.85   # e.g., NVIDIA H100 / A100 instance price
+  cpu_cost_per_hour: 0.55
+  storage_cost_per_gb_month: 0.08
+  network_cost_per_gb: 0.02
+
+features:
+  enable_security: true
+  enable_intelligence: true
+  enable_optimization: false
+  enable_research: false
