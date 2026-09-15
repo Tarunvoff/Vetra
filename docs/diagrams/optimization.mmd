@@ -1,0 +1,10 @@
+graph TD
+    Block[(KV Cache Block)] --> PlaceTier[Placement Tiering]
+    PlaceTier -->|Top 30% Utility| GPU[Tier 0: GPU HBM3]
+    PlaceTier -->|Intermediate Utility| CPU[Tier 1: Host System RAM]
+    PlaceTier -->|Long-Tail Utility| NVMe[Tier 2: Remote NVMe-oF]
+
+    Block --> QuantTier[Adaptive Quantization]
+    QuantTier --> FP16[FP16 Standard]
+    QuantTier --> INT8[INT8 50% Memory Reduction]
+    QuantTier --> INT4[INT4 75% Memory Reduction]

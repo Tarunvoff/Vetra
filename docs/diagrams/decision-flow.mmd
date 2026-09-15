@@ -1,0 +1,14 @@
+flowchart TD
+    Start([Evaluate Block]) --> SecCheck{Pass Security & TTL?}
+    SecCheck -- No --> Deny[Decision: EVICT / DENY]
+    SecCheck -- Yes --> PressureCheck{GPU Memory Pressure}
+
+    PressureCheck -- "Low (< 75%)" --> Keep[Decision: KEEP]
+    PressureCheck -- "Medium (75-90%)" --> ImpMed{Importance >= 0.60?}
+    ImpMed -- Yes --> Keep
+    ImpMed -- No --> Offload[Decision: OFFLOAD_CPU]
+
+    PressureCheck -- "High (>= 90%)" --> ImpHigh{Importance Score}
+    ImpHigh -- ">= 0.80" --> Keep
+    ImpHigh -- "0.25 - 0.79" --> Offload
+    ImpHigh -- "< 0.25" --> Evict[Decision: EVICT]

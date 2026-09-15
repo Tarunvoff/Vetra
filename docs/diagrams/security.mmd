@@ -1,0 +1,12 @@
+graph LR
+    subgraph Tenant A
+        ReqA[Tenant A Request] --> BlockA[(Tenant A Cache Block)]
+    end
+
+    subgraph Tenant B
+        ReqB[Tenant B Request] --> BlockB[(Tenant B Cache Block)]
+    end
+
+    ReqB -.->|Attempt Reuse| CrossCheck{ACL Rule Exists?}
+    CrossCheck -- No --> BlockDenied[Security Action: DENY]
+    CrossCheck -- Yes --> BlockAllowed[Security Action: ALLOW]

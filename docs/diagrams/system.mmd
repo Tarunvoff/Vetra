@@ -1,0 +1,9 @@
+graph TD
+    Client["Client / API Gateway"] -->|"Inference Requests"| Engine["LLM Engine (vLLM / SGLang)"]
+    Engine -->|"Prometheus Telemetry (/metrics)"| TelemetryCollector["Telemetry Collector"]
+    TelemetryCollector -->|"Normalized Metrics"| Storage["Redis / In-Memory Store"]
+    Storage -->|"Block Metadata"| Scorer["Importance Scorer"]
+    Scorer -->|"Utility Scores"| Policy["Policy Engine"]
+    Policy -->|"Recommendations"| API["KVGuard FastAPI API"]
+    API -->|"Observability"| Dashboard["Next.js Dashboard"]
+    Policy -.->|"Phase 4 Direct Control"| Engine

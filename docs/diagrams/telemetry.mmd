@@ -1,0 +1,16 @@
+sequenceDiagram
+    autonumber
+    participant V as vLLM (/metrics)
+    participant C as TelemetryCollector
+    participant A as Aggregator
+    participant P as Prometheus Exporter (/metrics)
+    participant R as Redis Store
+
+    loop Every 2 Seconds
+        C->>V: HTTP GET /metrics
+        V-->>C: Prometheus Metric Text
+        C->>C: Parse GPU & Cache usage
+        C->>A: Append Snapshot
+        C->>P: Update Gauges
+        C->>R: Update Active Request Index
+    end
