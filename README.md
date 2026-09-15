@@ -172,5 +172,11 @@ pytest -v tests/
 
 ---
 
+## 📚 Research & Deep Dives
+
+- [Comprehensive Deep-Dive: Key-Value (KV) Cache in Modern LLM Inference](file:///e:/KV-Guard/docs/research/deep-dive-kv-cache.md) — Mathematical foundations ($Q, K, V$), Prefill vs Decode dynamics, physical memory formulas (MHA/GQA/MLA), memory wall and bandwidth bottlenecks, traffic reuse patterns, optimization taxonomy, and multi-tenant security risks.
+
+---
+
 ## 📜 License
 Apache License 2.0. See [LICENSE](LICENSE) for details.
