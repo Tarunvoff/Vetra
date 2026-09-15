@@ -1,6 +1,6 @@
 import pytest
-from kvguard.simulation.engine import SimulatedEngineAdapter
-from kvguard.simulation.environment import SimulatedPolicyEnvironment
+from vetra.simulation.engine import SimulatedEngineAdapter
+from vetra.simulation.environment import SimulatedPolicyEnvironment
 
 
 @pytest.mark.asyncio

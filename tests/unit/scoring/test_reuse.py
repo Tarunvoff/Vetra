@@ -1,5 +1,5 @@
-from kvguard.core.models import KVBlockStats
-from kvguard.scoring.reuse import calculate_reuse_score
+from vetra.core.models import KVBlockStats
+from vetra.scoring.reuse import calculate_reuse_score
 
 
 def test_reuse_score(sample_block: KVBlockStats):

@@ -3,7 +3,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "KVGuard Control Plane Dashboard",
+  title: "Vetra Control Plane Dashboard",
   description: "Intelligent Key-Value (KV) Cache Control Plane for LLM Inference Engines",
 };
 

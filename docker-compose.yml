@@ -4,7 +4,7 @@ services:
   # Metadata repository for KV cache stats and access metrics
   redis:
     image: redis:7.2-alpine
-    container_name: kvguard-redis
+    container_name: vetra-redis
     ports:
       - "6379:6379"
     volumes:
@@ -16,20 +16,20 @@ services:
       timeout: 3s
       retries: 5
 
-  # KVGuard Control Plane API
-  kvguard-api:
+  # Vetra Control Plane API
+  vetra-api:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: kvguard-api
+    container_name: vetra-api
     environment:
-      - KVGUARD_ENVIRONMENT=production
-      - KVGUARD_EXECUTION_MODE=simulation
-      - KVGUARD_DRY_RUN=true
+      - VETRA_ENVIRONMENT=production
+      - VETRA_EXECUTION_MODE=simulation
+      - VETRA_DRY_RUN=true
       - REDIS_URL=redis://redis:6379/0
       - VLLM_BASE_URL=http://host.docker.internal:8000
-      - KVGUARD_API_HOST=0.0.0.0
-      - KVGUARD_API_PORT=8080
+      - VETRA_API_HOST=0.0.0.0
+      - VETRA_API_PORT=8080
     ports:
       - "8080:8080"
     depends_on:
@@ -38,10 +38,10 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
-  # Optional Prometheus scraping KVGuard metrics
+  # Optional Prometheus scraping Vetra metrics
   prometheus:
     image: prom/prometheus:v2.50.0
-    container_name: kvguard-prometheus
+    container_name: vetra-prometheus
     ports:
       - "9090:9090"
     volumes:
@@ -50,7 +50,7 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
     depends_on:
-      - kvguard-api
+      - vetra-api
 
 volumes:
   redis_data:

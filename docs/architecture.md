@@ -1,16 +1,16 @@
-# KVGuard Architecture Specification
+# Vetra Architecture Specification
 
 ## 1. Problem Statement
 Modern Large Language Model (LLM) inference engines (such as vLLM, SGLang, and TensorRT-LLM) manage high token throughput and multi-turn context via PagedAttention and RadixAttention. However, as prompt lengths scale to 128k+ tokens and concurrent multi-tenant workloads surge, KV cache memory quickly exhausts high-bandwidth GPU memory (HBM), causing GPU thrashing, request stalls, and excessive latency.
 
-Existing systems provide the low-level KV cache execution machinery (memory allocators and paging kernels). **KVGuard provides the control plane intelligence and governance layer.**
+Existing systems provide the low-level KV cache execution machinery (memory allocators and paging kernels). **Vetra provides the control plane intelligence and governance layer.**
 
-## 2. KVGuard Core Architecture
-KVGuard operates strictly as a policy and governance control plane, decoupled from the underlying inference engines:
+## 2. Vetra Core Architecture
+Vetra operates strictly as a policy and governance control plane, decoupled from the underlying inference engines:
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                 KVGuard Control Plane                   │
+│                 Vetra Control Plane                   │
 │                                                         │
 │  [ Observe ] ──> [ Understand ] ──> [ Secure / Decide ]  │
 └────────────────────────────┬────────────────────────────┘
@@ -32,7 +32,7 @@ KVGuard operates strictly as a policy and governance control plane, decoupled fr
 
 ## 3. Comparison: Execution Engines vs Control Plane
 
-| Capability | Underlying Engines (vLLM, SGLang, LMCache) | KVGuard Control Plane |
+| Capability | Underlying Engines (vLLM, SGLang, LMCache) | Vetra Control Plane |
 | :--- | :--- | :--- |
 | **Role** | Execution / Data Plane | Intelligence / Policy / Control Plane |
 | **KV Tensors** | Directly allocates and mutates in GPU memory | Tracks metadata and access patterns only |

@@ -1,6 +1,6 @@
-from kvguard.cache.lifecycle import CacheLifecycleManager
-from kvguard.core.enums import CacheLocation
-from kvguard.core.models import KVBlockStats
+from vetra.cache.lifecycle import CacheLifecycleManager
+from vetra.core.enums import CacheLocation
+from vetra.core.models import KVBlockStats
 
 
 def test_lifecycle_transition_to_cpu(sample_block: KVBlockStats):

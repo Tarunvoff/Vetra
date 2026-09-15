@@ -1,5 +1,5 @@
-from kvguard.core.models import KVBlockStats
-from kvguard.scoring.frequency import calculate_frequency
+from vetra.core.models import KVBlockStats
+from vetra.scoring.frequency import calculate_frequency
 
 
 def test_frequency_zero_access(sample_block: KVBlockStats):

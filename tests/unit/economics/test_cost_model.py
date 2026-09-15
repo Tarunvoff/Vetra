@@ -1,5 +1,5 @@
-from kvguard.core.models import GPUStats
-from kvguard.economics.cost_model import CostModel
+from vetra.core.models import GPUStats
+from vetra.economics.cost_model import CostModel
 
 
 def test_cost_model_breakdown(normal_gpu_stats: GPUStats):

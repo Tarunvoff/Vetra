@@ -1,5 +1,5 @@
 /**
- * KVGuard Control Plane API Client with Simulation Fallback
+ * Vetra Control Plane API Client with Simulation Fallback
  */
 
 export interface GPUStats {

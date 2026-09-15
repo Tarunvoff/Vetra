@@ -3,5 +3,5 @@
 set -e
 
 cd "$(dirname "$0")/../dashboard"
-echo "Starting KVGuard Next.js Dashboard..."
+echo "Starting Vetra Next.js Dashboard..."
 npm run dev

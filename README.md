@@ -1,4 +1,4 @@
-# KVGuard 🛡️
+# Vetra 🛡️
 ### Intelligent Key-Value (KV) Cache Control Plane for LLM Inference Engines
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -6,17 +6,17 @@
 [![Architecture](https://img.shields.io/badge/Architecture-Control%20Plane-cyan)](docs/architecture.md)
 [![Status](https://img.shields.io/badge/Phase%201-Runnable%20Scaffold-green)](CHANGELOG.md)
 
-**KVGuard** is an intelligent control plane that sits above modern LLM inference engines (such as **vLLM**, **SGLang**, and **TensorRT-LLM**) to manage the full lifecycle, placement, security, and economics of Key-Value (KV) cache.
+**Vetra** is an intelligent control plane that sits above modern LLM inference engines (such as **vLLM**, **SGLang**, and **TensorRT-LLM**) to manage the full lifecycle, placement, security, and economics of Key-Value (KV) cache.
 
 ---
 
-## 🎯 What is KVGuard?
+## 🎯 What is Vetra?
 
-Modern inference engines provide the low-level execution machinery (PagedAttention, RadixAttention, chunked prefill). **KVGuard provides the intelligence and governance layer.**
+Modern inference engines provide the low-level execution machinery (PagedAttention, RadixAttention, chunked prefill). **Vetra provides the intelligence and governance layer.**
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                 KVGuard Control Plane                   │
+│                 Vetra Control Plane                   │
 │                                                         │
 │  [ Observe ] ──> [ Understand ] ──> [ Secure / Decide ]  │
 └────────────────────────────┬────────────────────────────┘
@@ -36,7 +36,7 @@ Modern inference engines provide the low-level execution machinery (PagedAttenti
 └─────────────────────────────────────────────────────────┘
 ```
 
-KVGuard decides:
+Vetra decides:
 - **What should remain on GPU HBM** vs **what should be offloaded to CPU/RAM**.
 - **What should be prefetched** before subsequent multi-turn conversation or RAG requests arrive.
 - **What should be evicted** when memory pressure hits critical thresholds.
@@ -55,7 +55,7 @@ KVGuard decides:
 | **Scoring Engine** | `IMPLEMENTED` | Explainable weighted formula (`recency`, `frequency`, `reuse`). |
 | **Policy Engine** | `IMPLEMENTED` | Rule-based recommendation engine for low/medium/high pressure. |
 | **FastAPI Server** | `IMPLEMENTED` | Complete `/api/v1/...` REST API and `/metrics` Prometheus exporter. |
-| **SDK & CLI** | `IMPLEMENTED` | Python `KVGuard` class and `kvguard doctor / start / stats / benchmark`. |
+| **SDK & CLI** | `IMPLEMENTED` | Python `Vetra` class and `vetra doctor / start / stats / benchmark`. |
 | **Dashboard** | `IMPLEMENTED` | Next.js 15 + React 19 + TypeScript real-time control plane interface. |
 | **Benchmark Suite** | `IMPLEMENTED` | Synthetic RAG, multi-turn, and repeated prompt baseline comparisons. |
 | **Tenant Isolation** | `PHASE 2 (STUB)` | ACL and namespace isolation boundaries. |
@@ -70,27 +70,27 @@ KVGuard decides:
 ### 1. Installation
 
 ```bash
-git clone https://github.com/kvguard/kvguard.git
-cd kvguard
+git clone https://github.com/vetra/vetra.git
+cd vetra
 pip install -e ".[dev,simulation]"
 ```
 
-### 2. Run Diagnostics (`kvguard doctor`)
+### 2. Run Diagnostics (`vetra doctor`)
 
 Verify your environment, Python version, and connectivity:
 ```bash
-kvguard doctor
+vetra doctor
 ```
 
-### 3. Run KVGuard (Simulation Mode - No GPU required)
+### 3. Run Vetra (Simulation Mode - No GPU required)
 
 ```bash
-kvguard start --mode simulation --port 8080
+vetra start --mode simulation --port 8080
 ```
 
 Access the interactive API docs at [http://localhost:8080/docs](http://localhost:8080/docs).
 
-### 4. Run KVGuard (Live vLLM Mode)
+### 4. Run Vetra (Live vLLM Mode)
 
 Start vLLM with prefix caching enabled:
 ```bash
@@ -99,9 +99,9 @@ python -m vllm.entrypoints.openai.api_server \
   --enable-prefix-caching
 ```
 
-Start KVGuard connected to vLLM:
+Start Vetra connected to vLLM:
 ```bash
-kvguard start --mode live --vllm-url http://localhost:8000 --port 8080
+vetra start --mode live --vllm-url http://localhost:8000 --port 8080
 ```
 
 ### 5. Launch the Web Dashboard
@@ -117,7 +117,7 @@ Open [http://localhost:3000](http://localhost:3000) to view real-time GPU pressu
 
 ## 📊 Running Benchmarks
 
-Compare baseline naive caching vs KVGuard managed control plane:
+Compare baseline naive caching vs Vetra managed control plane:
 
 ```bash
 python benchmarks/report.py table
@@ -125,9 +125,9 @@ python benchmarks/report.py table
 
 Output:
 ```text
-KVGuard Benchmark Evaluation: Baseline vs KVGuard (SIMULATION)
+Vetra Benchmark Evaluation: Baseline vs Vetra (SIMULATION)
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━┓
-┃ Metric                    ┃ Baseline ┃  KVGuard ┃   Delta ┃
+┃ Metric                    ┃ Baseline ┃  Vetra ┃   Delta ┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━┩
 │ Cache Hit Rate            │    42.1% │    67.4% │  +25.3% │
 │ KV Memory                 │  11.2 GB │   8.4 GB │  -25.0% │
@@ -143,10 +143,10 @@ KVGuard Benchmark Evaluation: Baseline vs KVGuard (SIMULATION)
 ## 🐍 Python SDK Usage
 
 ```python
-from kvguard import KVGuard
+from vetra import Vetra
 
-# Initialize KVGuard control plane client
-guard = KVGuard(engine="vllm", mode="simulation")
+# Initialize Vetra control plane client
+guard = Vetra(engine="vllm", mode="simulation")
 guard.start()
 
 # Query real-time stats

@@ -1,6 +1,6 @@
 import pytest
-from kvguard.engines.vllm.adapter import VLLMAdapter
-from kvguard.engines.vllm.metrics import VLLMPrometheusParser
+from vetra.engines.vllm.adapter import VLLMAdapter
+from vetra.engines.vllm.metrics import VLLMPrometheusParser
 
 
 SAMPLE_VLLM_METRICS = """

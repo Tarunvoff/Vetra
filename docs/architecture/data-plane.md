@@ -1,6 +1,6 @@
 # Data Plane & Engine Adapters
 
-KVGuard interacts with data-plane inference engines via the `IInferenceEngineAdapter` contract.
+Vetra interacts with data-plane inference engines via the `IInferenceEngineAdapter` contract.
 
 ## Adapters
 - **vLLM Adapter**: Primary implementation parsing live Prometheus exposition metrics from `/metrics`.

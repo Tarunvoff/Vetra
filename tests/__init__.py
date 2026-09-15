@@ -1,1 +1,1 @@
-"""Unit and integration test suite for KVGuard."""
+"""Unit and integration test suite for Vetra."""

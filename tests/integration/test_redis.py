@@ -1,7 +1,7 @@
 import pytest
-from kvguard.cache.block import create_sample_block
-from kvguard.storage.memory import InMemoryMetadataRepository
-from kvguard.storage.redis import RedisMetadataRepository
+from vetra.cache.block import create_sample_block
+from vetra.storage.memory import InMemoryMetadataRepository
+from vetra.storage.redis import RedisMetadataRepository
 
 
 @pytest.mark.asyncio

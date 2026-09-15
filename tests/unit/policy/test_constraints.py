@@ -1,5 +1,5 @@
-from kvguard.core.models import GPUStats, PolicyConstraints
-from kvguard.policy.constraints import PolicyConstraintChecker
+from vetra.core.models import GPUStats, PolicyConstraints
+from vetra.policy.constraints import PolicyConstraintChecker
 
 
 def test_gpu_pressure_threshold(high_pressure_gpu_stats: GPUStats):

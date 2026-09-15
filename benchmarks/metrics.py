@@ -7,7 +7,7 @@ from pydantic import BaseModel, Field
 class BenchmarkMetrics(BaseModel):
     """Execution summary statistics for a benchmark run."""
 
-    mode: str = "baseline"  # baseline vs kvguard
+    mode: str = "baseline"  # baseline vs vetra
     workload: str = "mixed"
     total_requests: int = 0
     cache_hit_rate: float = 0.0

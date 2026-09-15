@@ -3,14 +3,14 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "kvguard"
+name = "vetra"
 version = "0.1.0"
 description = "Intelligent Key-Value (KV) Cache Control Plane for LLM Inference Engines"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "Apache-2.0" }
 authors = [
-    { name = "KVGuard Team", email = "engineering@kvguard.dev" }
+    { name = "Vetra Team", email = "engineering@vetra.dev" }
 ]
 keywords = ["llm", "kv-cache", "vllm", "sglang", "tensorrt-llm", "inference", "gpu-memory", "control-plane"]
 classifiers = [
@@ -56,15 +56,16 @@ telemetry = [
     "opentelemetry-sdk>=1.23.0",
 ]
 all = [
-    "kvguard[dev,simulation,telemetry]",
+    "vetra[dev,simulation,telemetry]",
 ]
 
 [project.scripts]
-kvguard = "kvguard.cli.main:cli"
+vetra = "vetra.cli.main:cli"
+kvguard = "vetra.cli.main:cli"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["kvguard*"]
+include = ["vetra*"]
 
 [tool.pytest.ini_options]
 minversion = "7.0"

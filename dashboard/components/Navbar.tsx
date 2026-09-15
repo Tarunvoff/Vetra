@@ -25,8 +25,7 @@ export function Navbar({ isSimulated = true }: { isSimulated?: boolean }) {
               <Shield size={22} color="#0a0d14" />
             </div>
             <div>
-              <span style={{ fontSize: "1.25rem", fontWeight: 800, letterSpacing: "-0.025em" }}>KV</span>
-              <span style={{ fontSize: "1.25rem", fontWeight: 800, color: "#00f2fe" }}>Guard</span>
+              <span style={{ fontSize: "1.25rem", fontWeight: 800, color: "#00f2fe", letterSpacing: "-0.025em" }}>Vetra</span>
               <span style={{ fontSize: "0.7rem", color: "var(--text-muted)", marginLeft: "0.5rem", textTransform: "uppercase" }}>Control Plane</span>
             </div>
           </Link>

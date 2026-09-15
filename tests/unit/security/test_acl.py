@@ -1,6 +1,6 @@
-from kvguard.core.enums import SecurityAction
-from kvguard.core.models import ACLRule, KVBlockStats
-from kvguard.security.policy import SecurityPolicyEngine
+from vetra.core.enums import SecurityAction
+from vetra.core.models import ACLRule, KVBlockStats
+from vetra.security.policy import SecurityPolicyEngine
 
 
 def test_tenant_isolation_deny_cross_tenant(sample_block: KVBlockStats):

@@ -1,6 +1,6 @@
 # Multi-Tenant Security & Isolation (Phase 2)
 
-KVGuard treats KV cache memory as sensitive tenant assets.
+Vetra treats KV cache memory as sensitive tenant assets.
 
 ## Isolation Principles
 1. **Zero Contamination**: Tenant A cannot reuse Tenant B's cache blocks unless an explicit ACL rule authorizes sharing.

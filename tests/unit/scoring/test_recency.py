@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
-from kvguard.core.models import KVBlockStats
-from kvguard.scoring.recency import calculate_recency
+from vetra.core.models import KVBlockStats
+from vetra.scoring.recency import calculate_recency
 
 
 def test_recency_fresh_block(sample_block: KVBlockStats):

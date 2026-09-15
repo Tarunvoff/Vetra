@@ -8,7 +8,7 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability within KVGuard (such as unauthorized cross-tenant cache reuse, ACL leakage, or unauthenticated control-plane access), please report it responsibly by emailing **security@kvguard.dev**.
+If you discover a security vulnerability within Vetra (such as unauthorized cross-tenant cache reuse, ACL leakage, or unauthenticated control-plane access), please report it responsibly by emailing **security@vetra.dev**.
 
 Please include:
 - Description of the vulnerability

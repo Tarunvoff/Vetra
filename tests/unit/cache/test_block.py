@@ -1,5 +1,5 @@
-from kvguard.cache.block import calculate_kv_block_bytes
-from kvguard.core.enums import QuantizationPrecision
+from vetra.cache.block import calculate_kv_block_bytes
+from vetra.core.enums import QuantizationPrecision
 
 
 def test_calculate_kv_block_bytes():

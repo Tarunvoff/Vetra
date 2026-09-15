@@ -1,4 +1,4 @@
-# KVGuard Development Configuration
+# Vetra Development Configuration
 environment: development
 execution_mode: simulation
 dry_run: true
@@ -12,7 +12,7 @@ vllm:
 
 redis:
   url: "redis://localhost:6379/0"
-  key_prefix: "kvguard:dev:"
+  key_prefix: "vetra:dev:"
   use_in_memory_fallback: true
 
 api:

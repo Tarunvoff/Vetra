@@ -1,9 +1,9 @@
-"""Pytest configuration and shared fixtures for KVGuard tests."""
+"""Pytest configuration and shared fixtures for Vetra tests."""
 
 import pytest
-from kvguard.cache.block import create_sample_block
-from kvguard.core.models import GPUStats, KVBlockStats
-from kvguard.storage.memory import InMemoryMetadataRepository
+from vetra.cache.block import create_sample_block
+from vetra.core.models import GPUStats, KVBlockStats
+from vetra.storage.memory import InMemoryMetadataRepository
 
 
 @pytest.fixture

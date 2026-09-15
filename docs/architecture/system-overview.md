@@ -1,4 +1,4 @@
-# KVGuard Architecture Details
+# Vetra Architecture Details
 
 - [Control Plane Specification](control-plane.md)
 - [Data Plane & Engine Adapter Abstraction](data-plane.md)

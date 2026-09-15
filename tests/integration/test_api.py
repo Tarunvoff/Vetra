@@ -1,8 +1,8 @@
 import pytest
 from fastapi.testclient import TestClient
-from kvguard.api.server import create_app
-from kvguard.config import Settings
-from kvguard.core.enums import ExecutionMode
+from vetra.api.server import create_app
+from vetra.config import Settings
+from vetra.core.enums import ExecutionMode
 
 
 @pytest.fixture

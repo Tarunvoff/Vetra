@@ -1,6 +1,6 @@
 # Control Plane Architecture
 
-The KVGuard Control Plane provides asynchronous orchestration above the LLM inference tier.
+The Vetra Control Plane provides asynchronous orchestration above the LLM inference tier.
 
 ## Key Subsystems
 1. **Telemetry Collector**: Periodically ingests engine metrics without degrading latency.

@@ -1,5 +1,5 @@
-from kvguard.core.models import KVBlockStats
-from kvguard.scoring.importance import compute_importance
+from vetra.core.models import KVBlockStats
+from vetra.scoring.importance import compute_importance
 
 
 def test_compute_importance_normalized(sample_block: KVBlockStats):

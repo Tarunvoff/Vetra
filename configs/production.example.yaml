@@ -1,4 +1,4 @@
-# KVGuard Production Configuration Template
+# Vetra Production Configuration Template
 environment: production
 execution_mode: live
 dry_run: true  # Recommended dry_run for initial deployment before write-back support
@@ -12,7 +12,7 @@ vllm:
 
 redis:
   url: "redis://:STRONG_PASSWORD@redis-cluster.internal:6379/0"
-  key_prefix: "kvguard:prod:"
+  key_prefix: "vetra:prod:"
   use_in_memory_fallback: false
 
 api:

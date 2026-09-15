@@ -1,6 +1,6 @@
-from kvguard.core.enums import DecisionType
-from kvguard.core.models import GPUStats, KVBlockStats
-from kvguard.policy.engine import PolicyEngine
+from vetra.core.enums import DecisionType
+from vetra.core.models import GPUStats, KVBlockStats
+from vetra.policy.engine import PolicyEngine
 
 
 def test_policy_low_pressure_keep(sample_block: KVBlockStats, normal_gpu_stats: GPUStats):
